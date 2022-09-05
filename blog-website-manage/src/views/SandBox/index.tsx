@@ -1,5 +1,5 @@
 import React from 'react'
-import './sass/SandBox.css'
+import './sass/SandBox.scss'
 import SideMenu from '../../components/SandBox/SideMenu'
 import TopHeader from '../../components/SandBox/TopHeader'
 import { Outlet } from "react-router-dom"; //
