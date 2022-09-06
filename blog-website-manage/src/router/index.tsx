@@ -3,8 +3,8 @@ import Login from '../views/Login'
 import NotFound from '../views/NotFound'
 import SandBox from '../views/SandBox'
 import Home from '../views/SandBox/Home'
-import RightList from '../views/SandBox/RightList'
-import RoleList from '../views/SandBox/RoleList'
+import RightList from '../views/SandBox/rightManage/RightList'
+import RoleList from '../views/SandBox/rightManage/RoleList'
 import UserList from '../views/SandBox/UserList'
 const RequireAuth = () => { // 路由拦截
     // return localStorage.getItem("token") ? <SandBox></SandBox> : <Navigate to={"/login"} replace />

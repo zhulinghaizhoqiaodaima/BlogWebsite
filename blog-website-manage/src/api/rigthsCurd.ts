@@ -1,6 +1,10 @@
-import axios from "axios";
+import http from './config'
 
-const rightsRead = ()=>{
-    return axios.get('http://localhost:5000/rights?_embed=children')
+const getRightChildren = (): Promise<any> => http.get('/rights?_embed=children')
+const getRight = (): Promise<any> => http.get('/rights')
+const deleteRightOne = (params:number): Promise<any> => http.delete('/rights/'+params)
+export {
+    getRightChildren, 
+    getRight,
+    deleteRightOne 
 }
-export {rightsRead}

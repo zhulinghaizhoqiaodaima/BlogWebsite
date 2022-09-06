@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import {
   UserOutlined,
 } from '@ant-design/icons';
-import { rightsRead } from '../../api/rigthsCurd'
+import { getRightChildren } from '../../api/rigthsCurd'
 import { MenuInfo } from 'rc-menu/lib/interface';
 
 
@@ -67,9 +67,8 @@ function SideMenu(props: any) {
   let NewdefaultOpenKeys:string = '/'+ curSelectedKeys.split('/')[1];
 
   useEffect(() => {
-    rightsRead().then((res: any) => {
-      console.log(res.data);
-      let newData = getNewDataList(res.data)
+    getRightChildren().then((res: any) => {
+      let newData = getNewDataList(res)
       let temp: any = fromJS(newData).toJS()
       setmenuList(temp)
     })
