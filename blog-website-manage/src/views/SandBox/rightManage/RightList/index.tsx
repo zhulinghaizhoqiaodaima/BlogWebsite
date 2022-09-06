@@ -27,7 +27,7 @@ const getNewDataList = (List: any) => {
     if (item.children !== undefined) {
       item.children = getNewDataList(item.children)
     }
-    return { id: item.id, title: item.title, key: item.key, children: item.children, grade: item.grade, pagepermisson: item.pagepermisson }
+    return item;
   })
 
   return res
