@@ -57,6 +57,9 @@ const Role = () => {
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
+      render:(id)=>{
+        return <h1>{id}</h1>
+      }
     },
     {
       title: '角色名称',

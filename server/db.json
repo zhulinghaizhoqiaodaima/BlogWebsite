@@ -37,12 +37,12 @@
       "id": 4
     },
     {
-      "username": "西门吹灯",
+      "username": "西门吹",
       "password": "123",
       "roleState": true,
       "default": false,
       "region": "南极洲",
-      "roleId": 3,
+      "roleId": 2,
       "id": 5
     },
     {
@@ -71,6 +71,24 @@
       "region": "亚洲",
       "roleId": 3,
       "id": 8
+    },
+    {
+      "username": "诸葛村花",
+      "password": "666",
+      "region": "亚洲",
+      "roleId": 2,
+      "roleState": true,
+      "default": false,
+      "id": 9
+    },
+    {
+      "username": "3192052051732",
+      "password": "123",
+      "region": "南美洲",
+      "roleId": 2,
+      "roleState": true,
+      "default": false,
+      "id": 10
     }
   ],
   "roles": [

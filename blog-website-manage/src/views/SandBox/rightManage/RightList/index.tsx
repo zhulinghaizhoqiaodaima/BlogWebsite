@@ -53,6 +53,9 @@ const Index = () => {
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
+      render:(id)=>{
+        return <h1>{id}</h1>
+      }
     },
     {
       title: '权限名称',
