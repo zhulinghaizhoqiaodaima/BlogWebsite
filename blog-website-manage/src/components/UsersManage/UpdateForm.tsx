@@ -1,9 +1,26 @@
-import React, { forwardRef,useEffect,useState } from 'react'
+import  { forwardRef,useEffect,useState } from 'react'
 import {Form,Input,Select} from 'antd'
 const {Option}  = Select
+const filterRoles = (RolesList:any [],id:number):any=>{
+    if(RolesList.length === 0 || id ===1) return RolesList; 
+    if(id ===2) return RolesList.slice(1)
+    if(id ===3) return RolesList.slice(2)
+}
+const filterRegions = (RegionsList:any [],id:number,region:any):any=>{    
+    if(RegionsList.length === 0 || id ===1) return RegionsList; 
+    return RegionsList.filter((item:any)=>{
+        return item.value === region
+    })
+}
 const UserForm = forwardRef((props:any,ref:any) => {
+      // 1:"super",
+    // 2:"admin",
+    // 3:"editor"
+    const { roleId,region  } = JSON.parse(localStorage.getItem("token") as any)
     const [isDisabled, setisDisabled] = useState(false)
     const {RegionsList = [],RolesList =[],isUpdateDisabled} = props || {}
+    let newRoleList = filterRoles(RolesList,roleId)
+    let newRegionsList = filterRegions(RegionsList,roleId,region)
     useEffect(()=>{
         setisDisabled(isUpdateDisabled)
     },[isUpdateDisabled])
@@ -34,7 +51,7 @@ const UserForm = forwardRef((props:any,ref:any) => {
             >
                 <Select disabled={isDisabled}>
                     {
-                       RegionsList.map((item:any) =>
+                       newRegionsList.map((item:any) =>
                             <Option value={item.value} key={item.id}>{item.title}</Option>
                         )
                     }
@@ -57,7 +74,7 @@ const UserForm = forwardRef((props:any,ref:any) => {
                     }
                 }}>
                     {
-                       RolesList.map((item:any) =>
+                       newRoleList.map((item:any) =>
                             <Option value={item.id} key={item.id}>{item.roleName}</Option>
                         )
                     }

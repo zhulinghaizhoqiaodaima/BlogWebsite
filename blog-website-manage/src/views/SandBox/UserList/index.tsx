@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Table, Button, Modal, Popover, Switch, message } from 'antd';
+import { Table, Button, Modal, Switch, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState, useRef } from 'react';
 import { getUsers, postUsers, deleteUsers, patchUsers } from '../../../api/userCurd'
@@ -37,18 +37,18 @@ const Index = () => {
       dataIndex: 'region',
       key: 'region',
       filters: [
-        ...RegionsList.map((item:any)=>({
-          text:item.title,
-          value:item.value,
+        ...RegionsList.map((item: any) => ({
+          text: item.title,
+          value: item.value,
         })),
         {
-          text:"全球",
-          value:"全球",
+          text: "全球",
+          value: "全球",
         }
       ],
-      onFilter: (value: any, item) =>{
-       
-       return value === item.region;
+      onFilter: (value: any, item) => {
+
+        return value === item.region;
       },
       render: (region) => {
         return <b>{region === '' ? "全球" : region}</b>
@@ -146,11 +146,19 @@ const Index = () => {
     let formValue: any = updateForm?.current
     formValue.setFieldsValue(item)
   }
-  const initUserData = () => {
-    return getUsers().then((res: any) => {
-      let data: any = fromJS(res).toJS();
-      setdataTable(data)
-    })
+  const initUserData = async () => {
+    const { roleId, region,username } = JSON.parse(localStorage.getItem("token") as any)
+    // 1:"super",
+    // 2:"admin",
+    // 3:"editor"
+    const res = await getUsers();
+    let data: any = fromJS(res).toJS();
+    let newData = roleId === 1 ? data : [
+      ...data.filter((child: any)=>child.username===username),
+      ...data.filter((child: any)=>child.region===region&& child.roleId > roleId )
+    ]
+    console.log("🚀 ~ file: index.tsx ~ line 159 ~ initUserData ~ newData", newData)
+    setdataTable(newData);
   }
   useEffect(() => {
     initUserData()
@@ -171,7 +179,7 @@ const Index = () => {
   const updateOK = () => {
     let updateValue: any = updateForm?.current;
     updateValue.validateFields().then((res: any) => {
-     
+
       patchUsers((currentItem as any)?.id, {
         ...res
       }).then((res: any) => {
@@ -179,31 +187,40 @@ const Index = () => {
         console.log(res);
         setisVisible(false)
         message.success("修改成功", 2)
-        
+
       }).catch((err: any) => {
         message.error(`修改失败${err}`)
       })
     })
   }
+  const getSubmit = (data: any) => {
+    const newData = {
+      ...data,
+      roleState: true,
+      default: false,
+    }
+    if (newData.region === undefined) newData.region = "";
+    postUsers(newData).then((res: any) => {
+      initUserData()
+      message.success("添加成功", 2)
+    }).catch((err: any) => {
+      message.error("添加失败" + err)
+    })
+
+  }
   return (
     <div style={{ display: "flex", height: "100%", flexDirection: "column" }}>
-      <UsersForm RolesList={RolesList} RegionsList={RegionsList} getSubmit={(data: any) => {
-        const newData = {
-          ...data,
-          roleState: true,
-          default: false,
-        }
-        if (newData.region === undefined) newData.region = "";
-        postUsers(newData).then((res: any) => {
-          initUserData()
-          message.success("添加成功", 2)
-        }).catch((err: any) => {
-          message.error("添加失败" + err)
-        })
+      {/* 新增表单 */}
+      <UsersForm
+        RolesList={RolesList}
+        RegionsList={RegionsList}
+        getSubmit={(data: any) => getSubmit(data)}
 
-      }}></UsersForm>
+      ></UsersForm>
 
+      {/* 更新表单 */}
       <Modal
+        style={{textAlign:"center"}}
         open={isVisible}
         title="更新用户"
         okText="更新"
@@ -218,7 +235,7 @@ const Index = () => {
           ref={updateForm} isUpdateDisabled={isUpdateDisabled}
         ></UpdateForm>
       </Modal>
-
+      {/* 用户列表 */}
       <div style={{ flex: 1, overflow: "auto" }}>
         <Table columns={columns} dataSource={dataTable} rowKey={'id'} pagination={
           {
@@ -227,11 +244,8 @@ const Index = () => {
         } />
       </div>
     </div>
-
-
-
-
   )
 }
 
 export default Index;
+

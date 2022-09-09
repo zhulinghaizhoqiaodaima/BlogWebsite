@@ -41,15 +41,15 @@ const getMenuList = (List: any) => {
   return res;
 }
 
-const getNewDataList = (List: any) => {
+const getNewDataList = (List: any,rightsList:any) => {
   if (List.length === 0) return;
   let res = [];
   // eslint-disable-next-line array-callback-return
   res = List.filter((item: any) => {
     if (item.children !== undefined) {
-      item.children = getNewDataList(item.children)
+      item.children = getNewDataList(item.children,rightsList)
     }
-    if (item.pagepermisson === 1) return item;
+    if (item.pagepermisson === 1 && rightsList.includes(item.key)) return item;
 
   })
   return res
@@ -62,13 +62,14 @@ function goNavigate(data: MenuInfo) {
 function SideMenu(props: any) {
   const navigate = useNavigate();
   const [menuList, setmenuList] = useState([])
+  
   const dataList: MenuProps['items'] = getMenuList(menuList) || [];
   let curSelectedKeys: any = useLocation().pathname;
   let NewdefaultOpenKeys:string = '/'+ curSelectedKeys.split('/')[1];
-
-  useEffect(() => {
+  useEffect(() => {    
+    const {role:{rights:rightsList}} = JSON.parse(localStorage.getItem("token") as any);
     getRightChildren().then((res: any) => {
-      let newData = getNewDataList(res)
+      let newData = getNewDataList(res,rightsList)
       let temp: any = fromJS(newData).toJS()
       setmenuList(temp)
     })

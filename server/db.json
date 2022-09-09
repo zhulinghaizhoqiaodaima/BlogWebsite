@@ -10,15 +10,6 @@
       "roleId": 1
     },
     {
-      "username": "铁锤",
-      "password": "123",
-      "roleState": true,
-      "default": false,
-      "region": "亚洲",
-      "roleId": 2,
-      "id": 2
-    },
-    {
       "username": "钢蛋",
       "password": "123",
       "roleState": true,
@@ -41,8 +32,8 @@
       "password": "123",
       "roleState": true,
       "default": false,
-      "region": "南极洲",
-      "roleId": 2,
+      "region": "",
+      "roleId": 1,
       "id": 5
     },
     {
@@ -77,7 +68,7 @@
       "password": "666",
       "region": "亚洲",
       "roleId": 2,
-      "roleState": true,
+      "roleState": false,
       "default": false,
       "id": 9
     },
@@ -89,6 +80,24 @@
       "roleState": true,
       "default": false,
       "id": 10
+    },
+    {
+      "username": "竹林海",
+      "password": "123",
+      "region": "非洲",
+      "roleId": 2,
+      "roleState": true,
+      "default": false,
+      "id": 11
+    },
+    {
+      "username": "啧啧啧",
+      "password": "666",
+      "region": "北美洲",
+      "roleId": 2,
+      "roleState": true,
+      "default": false,
+      "id": 12
     }
   ],
   "roles": [

@@ -1,0 +1,29 @@
+ .main {
+     height: 100vh;
+     width: 100vw;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    .containerWrap{
+        background-color: rgb(35, 39, 65);
+        z-index: 1000;
+        text-align: center;
+        .login-form {
+            width: 500px;
+            height: 250px;
+            padding-left: 30px;
+            padding-right: 30px;
+            .login-form-button{
+                margin-top: 30px;
+            }
+        }
+        .loginTitle {
+            text-align: center;
+            height: 80px;
+            line-height: 80px;
+            font-size: 30px;
+            color: white;
+        }
+    }
+
+ }

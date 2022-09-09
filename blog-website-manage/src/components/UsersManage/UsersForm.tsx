@@ -13,10 +13,29 @@ interface Values {
     description: string;
     modifier: string;
 }
+
+const filterRoles = (RolesList:any [],id:number):any=>{
+    if(RolesList.length === 0 || id ===1) return RolesList; 
+    if(id ===2) return RolesList.slice(1)
+    if(id ===3) return RolesList.slice(2)
+}
+const filterRegions = (RegionsList:any [],id:number,region:any):any=>{
+    if(RegionsList.length === 0 || id ===1) return RegionsList; 
+    return RegionsList.filter((item:any)=>{
+        return item.value === region
+    })
+}
 function UsersForm(props: any) {
+     // 1:"super",
+    // 2:"admin",
+    // 3:"editor"
+    const { roleId,region  } = JSON.parse(localStorage.getItem("token") as any)
     const [open, setOpen] = useState(false);
     const [isDisable, setisDisable] = useState(false)
     const { RolesList = [], RegionsList = [], getSubmit } = props || {}
+    let newRoleList = filterRoles(RolesList,roleId)
+    let newRegionsList = filterRegions(RegionsList,roleId,region)
+
     const onCreate = (values: any) => {
         getSubmit(values)
         console.log('Received values of form: ', values);
@@ -30,6 +49,7 @@ function UsersForm(props: any) {
         const [form] = Form.useForm();
         return (
             <Modal
+            style={{textAlign:"center"}}
                 open={open}
                 title="添加用户"
                 okText="确定"
@@ -79,7 +99,7 @@ function UsersForm(props: any) {
                         >
 
                             {
-                                RegionsList.map((item: any) => {
+                                newRegionsList.map((item: any) => {
                                     return (
                                         <Option key={item.id} value={item.value}>{item.title}</Option>
                                     )
@@ -108,7 +128,7 @@ function UsersForm(props: any) {
                         >
 
                             {
-                                RolesList.map((item: any) => {
+                                newRoleList.map((item: any) => {
                                     return (
                                         <Option key={item.id} value={item.id}>{item.roleName}</Option>
                                     )
