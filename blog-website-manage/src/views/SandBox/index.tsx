@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './sass/SandBox.scss'
 import SideMenu from '../../components/SandBox/SideMenu'
 import TopHeader from '../../components/SandBox/TopHeader'
 import { Outlet } from "react-router-dom"; //
 import { Layout } from 'antd'
+
 const {  Content } = Layout;
 function SandBox() {
     return (
