@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const navigate = useNavigate()
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    // console.log('Received values of form: ', values);
     loginApi(values.username, values.password).then((res: any) => {
       // console.log(res);
       if(res.length === 0) {
@@ -22,14 +22,14 @@ function Login() {
       if (res[0].roleState) {
         localStorage.setItem('token',JSON.stringify(res[0]))
         message.success("登录成功",2)
-        navigate('/home')
+        navigate('/')
       }else{
         message.error("登录失败,账号没有权限",2)
       }
     })
   };
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
+    // console.log(engine);
     await loadFull(engine);
   }, []);
 

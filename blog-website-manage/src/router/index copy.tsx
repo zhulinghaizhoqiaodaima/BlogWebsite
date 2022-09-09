@@ -1,81 +1,120 @@
-import {useRoutes} from "react-router-dom";
-import { Suspense, lazy } from 'react'
-const routes = [
-  { 
-    path: '/',
-    auth:false,
-    component:lazy(() => import('../views/SandBox')),
-    children: [
-        { 
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import { lazy } from 'react'
+import React from 'react'
+import Login from '../views/Login'
+import NotFound from '../views/NotFound'
+import SandBox from '../views/SandBox'
+import Home from '../views/SandBox/Home'
+import RightList from '../views/SandBox/rightManage/RightList'
+import RoleList from '../views/SandBox/rightManage/RoleList'
+import UserList from '../views/SandBox/UserList'
+import NewsAdd from '../views/SandBox/NewsManage/NewsAdd'
+import NewsDraft from '../views/SandBox/NewsManage/NewsDraft'
+import NewsCategory from '../views/SandBox/NewsManage/NewsCategory'
+import Audit from '../views/SandBox/AuditManage/index'
+import AuditList from '../views/SandBox/AuditManage/AuditList'
+import Unpublished from '../views/SandBox/PublishManage/Unpublished'
+import Published from '../views/SandBox/PublishManage/Published'
+import Sunset from '../views/SandBox/PublishManage/Sunset'
+
+
+// 路由配置
+const GetRoutes = () => {
+  let rightsList: string[] = [];
+  if (JSON.parse(localStorage.getItem("token") as any)) {
+    const { role: { rights } } = JSON.parse(localStorage.getItem("token") as any)
+    rightsList = rights;
+  }
+  rightsList.push('/')
+  rightsList.push('/login')
+  rightsList.push('/*')
+
+  const curroutes = [
+    {
+      path: '/',
+      element: <SandBox></SandBox>,
+      redirect: '/home',
+      children: [
+        {
           path: '/home',
-          auth:true,
-          component:lazy(() => import('../views/SandBox/Home'))
+          element: <Home />
         },
-        { 
-            path: '/user-manage/list',
-            auth:true,
-            component:lazy(() => import('../views/SandBox/UserList'))
+        {
+          path: '/user-manage/list',
+          element: <UserList />
         },
-        { 
-            path: '/right-manage/right/list',
-            auth:true,
-            component:lazy(() => import('../views/SandBox/rightManage/RightList'))
+        {
+          path: '/right-manage/right/list',
+          element: <RightList />
         },
-        { 
-            path: '/right-manage/role/list',
-            auth:true,
-            component:lazy(() => import('../views/SandBox/rightManage/RoleList'))
+        {
+          path: '/right-manage/role/list',
+          element: <RoleList />
+        },
+        {
+          path: '/news-manage/add',
+          element: <NewsAdd />
+        },
+        {
+          path: '/news-manage/draft',
+          element: <NewsDraft />
+        },
+        {
+          path: '/news-manage/category',
+          element: <NewsCategory />
+        },
+        {
+          path: '/audit-manage/audit',
+          element: <Audit />
+        },
+        {
+          path: '/audit-manage/list',
+          element: <AuditList />
+        },
+        {
+          path: '/publish-manage/unpublished',
+          element: <Unpublished />
+        },
+        {
+          path: '/publish-manage/published',
+          element: <Published />
+        },
+        {
+          path: '/publish-manage/sunset',
+          element: <Sunset />
         },
       ]
-  },
-  {
-    path: '/login',
-    auth:false,
-    component:lazy(() => import('../views/Login'))
-  },
-  {
-    path: '/*',
-    auth:true,
-    component:lazy(() => import('../views/NotFound')),
-  },
-]
+    },
+    {
+      path: '/login',
+      element: <Login />
+    },
+    {
+      path: '/*',
+      element: <NotFound />
+    },
+  ]
+  //内层调用外层变量，形成闭包,便于登录后更新路由
+  const getNewRoutes = (list: any) => {
+    let res = list.filter((item: any) => {
+      if (item.children) item.children = getNewRoutes(item.children)
+      return rightsList.includes(item.path)
+    })
+    return res;
+  }
+  const newRoutes = getNewRoutes(curroutes);
 
-//根据路径获取路由
-// const checkAuth = (routers:any, path:String)=>{
-//   for (const data of routers) {
-//     if (data.path==path) return data
-//     if (data.children) {
-//       const res:any = checkAuth(data.children, path)
-//       if (res) return res
-//     }
-//   }
-//   return null
-// }
+  const routes = useRoutes(newRoutes);
+  return routes;
+}
 
-// 路由处理方式
-// const generateRouter = (routers:any) => {
-//   return routers.map((item:any) => {
-//     if (item.children) {
-//       item.children = generateRouter(item.children)
-//     }
-//     item.element = <Suspense fallback={
-//       <div>加载中...</div>
-//     }>
-//       {/* 把懒加载的异步路由变成组件装载进去 */}
-//       <item.component />
-//     </Suspense>
-//     return item
-//   })
-// }
 
-// const Router = () => useRoutes(generateRouter(routes))
-// console.log("🚀 ~ file: index.tsx ~ line 72 ~ Router", Router)
-// const checkRouterAuth = (path:String)=>{
-//   let auth = null
-//   auth = checkAuth(routes,path)
-//   return auth
-// }
+const SetRoutes = () => {
+  return (
+    <BrowserRouter>
+      <GetRoutes />
+    </BrowserRouter>
+  )
+}
+export default SetRoutes
 
-const Router = () => useRoutes(routes)
-
-export default  Router
