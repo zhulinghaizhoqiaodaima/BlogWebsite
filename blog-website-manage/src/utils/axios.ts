@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { message } from "antd";
 import Nprogress from 'nprogress'
 import  'nprogress/nprogress.css'
+// axios.defaults.baseURL = '' // 不需要添加直接封装好aixos实例
 export const createAxiosByinterceptors = (
   config?: AxiosRequestConfig
 ): AxiosInstance => {
