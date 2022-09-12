@@ -73,7 +73,7 @@ const NewsAdd = () => {
       region: region,
       author: username,
       roleId: roleId,
-      "auditState": 2,
+      auditState: publishState === 2 ? 0:1,
       publishState: publishState,
       createTime: new Date().getTime(),
       star: curstar,
@@ -82,7 +82,7 @@ const NewsAdd = () => {
 
     CreateNews(data).then((res:any)=>{
         console.log(res);
-        if(publishState === 2) {
+        if(publishState === 2) { // 2是提交到草稿箱中
           message.success("保存成功",2)
           navigate('/news-manage/draft')
         }else{  

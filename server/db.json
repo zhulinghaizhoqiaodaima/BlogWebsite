@@ -37,38 +37,11 @@
       "id": 5
     },
     {
-      "username": "轩辕翠花",
-      "password": "123",
-      "roleState": true,
-      "default": false,
-      "region": "南极洲",
-      "roleId": 3,
-      "id": 6
-    },
-    {
-      "username": "司马海味",
-      "password": "123",
-      "roleState": true,
-      "default": false,
-      "region": "亚洲",
-      "roleId": 3,
-      "id": 7
-    },
-    {
-      "username": "咕噜墩子",
-      "password": "123",
-      "roleState": true,
-      "default": false,
-      "region": "亚洲",
-      "roleId": 3,
-      "id": 8
-    },
-    {
       "username": "诸葛村花",
       "password": "666",
       "region": "亚洲",
       "roleId": 2,
-      "roleState": false,
+      "roleState": true,
       "default": false,
       "id": 9
     },
@@ -586,7 +559,7 @@
       "region": "",
       "author": "admin",
       "roleId": 1,
-      "auditState": 2,
+      "auditState": 0,
       "publishState": 3,
       "createTime": 1616203436307,
       "star": 1,
@@ -607,6 +580,20 @@
       "star": 12,
       "view": 348,
       "id": 10
+    },
+    {
+      "title": "666",
+      "categoryId": 2,
+      "content": "<p>&nbsp;{</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style=\"color: rgb(156, 220, 254);\">path:</span> <span style=\"color: rgb(206, 145, 120);\">'/news-manage/category'</span>,</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style=\"color: rgb(156, 220, 254);\">element:</span> <span style=\"color: rgb(128, 128, 128);\">&lt;</span><span style=\"color: rgb(78, 201, 176);\">NewsCategory</span> <span style=\"color: rgb(128, 128, 128);\">/&gt;</span></p><p>&nbsp; &nbsp; &nbsp; &nbsp; },</p>",
+      "region": "",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 0,
+      "publishState": 2,
+      "createTime": 1662977312831,
+      "star": 473,
+      "view": 234,
+      "id": 11
     }
   ]
 }

@@ -75,7 +75,6 @@ const Index = () => {
         return (<div style={{ textAlign: "center" }}>
           <Switch checked={roleState} disabled={item.default} onChange={() => {
             console.log(item);
-            message.loading("修改中ing", 2)
             patchUsers(item.id, {
               roleState: !item.roleState
             }).then((res: any) => {

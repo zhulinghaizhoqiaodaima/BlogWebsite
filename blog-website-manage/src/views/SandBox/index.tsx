@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import './sass/SandBox.scss'
 import SideMenu from '../../components/SandBox/SideMenu'
 import TopHeader from '../../components/SandBox/TopHeader'

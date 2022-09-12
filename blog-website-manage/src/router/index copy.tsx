@@ -1,5 +1,4 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { lazy } from 'react'
 import React from 'react'
 import Login from '../views/Login'
 import NotFound from '../views/NotFound'
@@ -11,6 +10,7 @@ import UserList from '../views/SandBox/UserList'
 import NewsAdd from '../views/SandBox/NewsManage/NewsAdd'
 import NewsDraft from '../views/SandBox/NewsManage/NewsDraft'
 import NewsCategory from '../views/SandBox/NewsManage/NewsCategory'
+import NewsPreview from '../views/SandBox/NewsManage/NewsPreview'
 import Audit from '../views/SandBox/AuditManage/index'
 import AuditList from '../views/SandBox/AuditManage/AuditList'
 import Unpublished from '../views/SandBox/PublishManage/Unpublished'
@@ -62,6 +62,10 @@ const GetRoutes = () => {
         {
           path: '/news-manage/category',
           element: <NewsCategory />
+        },
+        {
+          path: '/news-manage/preview/:id', 
+          element: <NewsPreview />
         },
         {
           path: '/audit-manage/audit',
