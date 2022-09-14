@@ -16,6 +16,7 @@ import AuditList from '../views/SandBox/AuditManage/AuditList'
 import Unpublished from '../views/SandBox/PublishManage/Unpublished'
 import Published from '../views/SandBox/PublishManage/Published'
 import Sunset from '../views/SandBox/PublishManage/Sunset'
+import NewsUpdate from "../views/SandBox/NewsManage/NewsUpdate";
 
 
 // 路由配置
@@ -66,6 +67,10 @@ const GetRoutes = () => {
         {
           path: '/news-manage/preview/:id', 
           element: <NewsPreview />
+        },
+        {
+          path: '/news-manage/update/:id', 
+          element: <NewsUpdate />
         },
         {
           path: '/audit-manage/audit',

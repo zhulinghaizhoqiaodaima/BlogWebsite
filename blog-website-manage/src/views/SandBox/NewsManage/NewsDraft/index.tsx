@@ -1,10 +1,10 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Table, Button, message,Modal } from 'antd';
+import { Table, Button,Modal,message, notification } from 'antd';
 import { DeleteOutlined, EditOutlined, UploadOutlined,ExclamationCircleOutlined } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
-import { deletenewsOne, getSelfDraft } from '../../../../api/newsCurd';
+import { deletenewsOne, getSelfDraft, UpdateAuditState } from '../../../../api/newsCurd';
 import { fromJS } from 'immutable';
 import { useNavigate } from 'react-router-dom';
 const { confirm } = Modal;
@@ -72,10 +72,10 @@ const NewsDraft = () => {
             {` `}
 
             <Button type='primary' icon={<EditOutlined />} onClick={() => {
+                 navigate(`/news-manage/update/${item.id}`)
             }} size='middle' shape="circle" />
             {` `}
-            <Button type='primary' icon={<UploadOutlined />} onClick={() => {
-            }} size='middle' shape="circle" />
+            <Button type='primary' icon={<UploadOutlined />} onClick={()=>UpdateAuditInfo(item)} size='middle' shape="circle" />
           </div>
         )
       }
@@ -99,6 +99,22 @@ const NewsDraft = () => {
       onCancel() { },
     });
   };
+  const UpdateAuditInfo = (item:any) => {
+    UpdateAuditState(item.id,{auditState:1}).then((res:any)=>{
+        console.log(res);
+        initDraftInfo()
+        message.success('提交审核成功',2)
+        navigate('/audit-manage/list')
+        notification.info(
+         {
+          message:"通知",
+          description:"您可以在审核列表中查看文章",
+          placement:"bottomRight"
+        
+         }
+        )
+    })
+  }
   const initDraftInfo =async () => {
     const { username } = JSON.parse(localStorage.getItem("token") as any)
     getSelfDraft(username).then((res: any) => {
@@ -109,7 +125,7 @@ const NewsDraft = () => {
   }
   useEffect(() => {
     initDraftInfo()
-
+  
   }, [])
 
   return (
