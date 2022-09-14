@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Index() {
+function AuditList() {
   return (
     <div>Index</div>
   )
 }
 
-export default Index
+export default AuditList
