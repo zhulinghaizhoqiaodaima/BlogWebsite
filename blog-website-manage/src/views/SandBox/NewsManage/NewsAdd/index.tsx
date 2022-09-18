@@ -69,30 +69,30 @@ const NewsAdd = () => {
     let curview = Math.floor(Math.random() * 1000) + 100;
     let data = {
       ...formInfo,
-      content:editorValue,
+      content: editorValue,
       region: region,
       author: username,
       roleId: roleId,
-      auditState: publishState === 2 ? 0:1,
+      auditState: publishState === 0 ? 0 : 1,
       publishState: publishState,
       createTime: new Date().getTime(),
       star: curstar,
       view: curview,
     }
 
-    CreateNews(data).then((res:any)=>{
-        console.log(res);
-        if(publishState === 2) { // 2是提交到草稿箱中
-          message.success("保存成功",2)
-          navigate('/news-manage/draft')
-        }else{  
-          message.success("提交成功",2)
-          navigate('/audit-manage/list')
-        }
-       
-        
-    }).catch((err:any)=>{
-      message.error(err,2)
+    CreateNews(data).then((res: any) => {
+      console.log(res);
+      if (publishState === 0) { // 2是提交到草稿箱中
+        message.success("保存成功", 2)
+        navigate('/news-manage/draft')
+      } else {
+        message.success("提交成功", 2)
+        navigate('/audit-manage/list')
+      }
+
+
+    }).catch((err: any) => {
+      message.error(err, 2)
     })
   }
   useEffect(() => {
@@ -174,12 +174,13 @@ const NewsAdd = () => {
           )}
           {current === steps.length - 1 && (
             <>
+              <Button type="primary" danger onClick={() => onSubmit(0)}>
+                保存草稿箱
+              </Button>
               <Button type="primary" onClick={() => onSubmit(1)}>
                 提交审核
               </Button>
-              <Button type="primary" danger onClick={() => onSubmit(2)}>
-                保存草稿箱
-              </Button>
+
             </>
           )}
 

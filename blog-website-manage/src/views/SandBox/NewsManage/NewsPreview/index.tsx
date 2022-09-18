@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Descriptions, PageHeader } from 'antd';
+import { Descriptions, PageHeader, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,6 +18,7 @@ function NewsPreview(props: any) {
   }, [params])
   const auditList = ["未审核", "审核中", "已通过", "未通过"]
   const publicList = ["未发布", "待发布", "已上线", "已下线"]
+  const publicColor = ['', 'orange', 'green', 'red']
   return (
     <>
       <div className="site-page-header-ghost-wrapper" style={{
@@ -43,10 +44,12 @@ function NewsPreview(props: any) {
                 <Descriptions.Item label="发布时间">-</Descriptions.Item>
                 <Descriptions.Item label="区域">{newInfo.region === "" ? "全球" : newInfo.region}</Descriptions.Item>
                 <Descriptions.Item label="审核状态">
-                  <span style={{ color: "red" }}>{auditList[newInfo.auditState]}</span>
+                  <Tag color={publicColor[newInfo.auditState]}>{auditList[newInfo.auditState]}
+                  </Tag>
                 </Descriptions.Item>
                 <Descriptions.Item label="发布状态">
-                  <span style={{ color: "red" }}>{publicList[newInfo.publishState]}</span>
+                  <Tag color={publicColor[newInfo.auditState]}>{publicList[newInfo.auditState]}
+                  </Tag>
                 </Descriptions.Item>
                 <Descriptions.Item label="访问数量">{newInfo.view}</Descriptions.Item>
                 <Descriptions.Item label="点赞数量">{newInfo.start}</Descriptions.Item>
@@ -56,15 +59,21 @@ function NewsPreview(props: any) {
           )
         }
       </div>
-      {
-        newInfo && (
-          <div dangerouslySetInnerHTML={{
-            __html: newInfo.content
-          }} style={{ textAlign: 'center',marginTop:"50px", }}>
 
-          </div>
-        )
-      }
+      <div style={{ display: "flex", height: "340px", flexDirection: "column" }}>
+        <div style={{ flex: 1, overflow: "auto" }}>
+          {
+            newInfo && (
+              <div dangerouslySetInnerHTML={{
+                __html: newInfo.content
+              }} style={{ marginTop: "50px", height: "400px" }}>
+
+              </div>
+            )
+          }
+        </div>
+      </div>
+
     </>
   )
 }

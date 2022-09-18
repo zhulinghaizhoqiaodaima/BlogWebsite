@@ -71,6 +71,7 @@ const NewsUpdate = () => {
     let data = {
       ...formInfo,
       content:editorValue,
+      auditState:publishState,
     }
     UpdateNews(id,data).then((res:any)=>{
         console.log(res);
@@ -174,7 +175,7 @@ const NewsUpdate = () => {
           )}
           {current === steps.length - 1 && (
             <>
-              <Button type="primary" danger onClick={() => onSubmit(2)}>
+              <Button type="primary" danger onClick={() => onSubmit(0)}>
                 保存草稿箱
               </Button>
             </>
