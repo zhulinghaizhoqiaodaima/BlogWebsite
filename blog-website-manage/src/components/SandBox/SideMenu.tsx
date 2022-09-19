@@ -7,7 +7,10 @@ import {
   UserOutlined,
   HomeOutlined,
   UsergroupDeleteOutlined,
-  ContactsOutlined,
+  AppstoreOutlined,
+  PushpinOutlined,
+  CopyOutlined,
+  BgColorsOutlined
 } from '@ant-design/icons';
 import { getRightChildren } from '../../api/rigthsCurd'
 import { connect } from 'react-redux';
@@ -15,20 +18,12 @@ const IconObj:any = {
    1: <HomeOutlined />, // 主页
    2:<UsergroupDeleteOutlined />, // 用户管理
    6:<UserOutlined />, // 用户管理
-   7: <ContactsOutlined />,// 用户列表
+   7: <PushpinOutlined />,// 权限列表
+   14:<CopyOutlined />, //新闻管理
+   21:<AppstoreOutlined />, //审核
+   24:<BgColorsOutlined />
+  
 }
-const IconList =[
-  <HomeOutlined />,
-  <HomeOutlined />, // 主页
-  <UserOutlined />, // 用户管理
-  <UsergroupDeleteOutlined />, 
-  <UsergroupDeleteOutlined />,
-  <UsergroupDeleteOutlined />,
-  <UsergroupDeleteOutlined />,
-  <UsergroupDeleteOutlined />,// 用户列表
-]
-console.log(IconList);
-
 const { Sider } = Layout;
 type MenuItem = Required<MenuProps>['items'][number];
 
