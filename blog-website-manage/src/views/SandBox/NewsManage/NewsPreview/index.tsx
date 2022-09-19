@@ -51,9 +51,9 @@ function NewsPreview(props: any) {
                   <Tag color={publicColor[newInfo.auditState]}>{publicList[newInfo.auditState]}
                   </Tag>
                 </Descriptions.Item>
-                <Descriptions.Item label="访问数量">{newInfo.view}</Descriptions.Item>
-                <Descriptions.Item label="点赞数量">{newInfo.start}</Descriptions.Item>
-                <Descriptions.Item label="评论数量">{newInfo.start}</Descriptions.Item>
+                <Descriptions.Item label="访问数量" style={{color:"red"}}>{newInfo.view}</Descriptions.Item>
+                <Descriptions.Item label="点赞数量">{newInfo.start }</Descriptions.Item>
+                <Descriptions.Item label="评论数量">{ 0 }</Descriptions.Item>
               </Descriptions>
             </PageHeader>
           )

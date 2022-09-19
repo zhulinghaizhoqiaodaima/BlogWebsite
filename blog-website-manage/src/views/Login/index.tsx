@@ -22,7 +22,7 @@ function Login() {
       if (res[0].roleState) {
         localStorage.setItem('token',JSON.stringify(res[0]))
         message.success("登录成功",2)
-        navigate('/')
+        navigate('/home')
       }else{
         message.error("登录失败,账号没有权限",2)
       }

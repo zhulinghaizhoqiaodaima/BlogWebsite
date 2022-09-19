@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { message } from "antd";
 import Nprogress from 'nprogress'
 import  'nprogress/nprogress.css'
+import {store} from "../redux/store";
 // axios.defaults.baseURL = '' // 不需要添加直接封装好aixos实例
 export const createAxiosByinterceptors = (
   config?: AxiosRequestConfig
@@ -15,8 +16,13 @@ export const createAxiosByinterceptors = (
   // 添加请求拦截器
   instance.interceptors.request.use(
     function (config: any) {
+      store.dispatch({
+        type:"spining/changeSpining",
+        payload:{
+          isLoading:true,
+        }
+      })
       Nprogress.start()
-
       // 在发送请求之前做些什么
     //   console.log("config:", config);
       // config.headers.Authorization = vm.$Cookies.get("vue_admin_token");
@@ -24,6 +30,12 @@ export const createAxiosByinterceptors = (
     },
     function (error) {
       // 对请求错误做些什么
+      store.dispatch({
+        type:"spining/changeSpining",
+        payload:{
+          isLoading:false,
+        }
+      })
       Nprogress.done()
       return Promise.reject(error);
     }
@@ -32,6 +44,13 @@ export const createAxiosByinterceptors = (
   // 添加响应拦截器
   instance.interceptors.response.use(
     function (response) {
+
+      store.dispatch({
+        type:"spining/changeSpining",
+        payload:{
+          isLoading:false,
+        }
+      })
       Nprogress.done()
       // 对响应数据做点什么
       const { data } = response;
@@ -40,6 +59,13 @@ export const createAxiosByinterceptors = (
    
     },
     function (error) {
+      
+      store.dispatch({
+        type:"spining/changeSpining",
+        payload:{
+          isLoading:false,
+        }
+      })
       Nprogress.done()
       // 对响应错误做点什么
       console.log("error-response:", error.response);

@@ -3,10 +3,12 @@ import './sass/SandBox.scss'
 import SideMenu from '../../components/SandBox/SideMenu'
 import TopHeader from '../../components/SandBox/TopHeader'
 import { Outlet } from "react-router-dom"; //
-import { Layout } from 'antd'
+import { Layout, Spin } from 'antd'
+import { connect } from 'react-redux';
 
-const {  Content } = Layout;
-function SandBox() {
+const { Content } = Layout;
+function SandBox(props:any) {
+    const {isLoading} = props;    
     return (
         <Layout>
             <SideMenu></SideMenu>
@@ -20,10 +22,19 @@ function SandBox() {
                         minHeight: 280,
                     }}
                 >
-                   <Outlet></Outlet>
+                    <Spin size="large" spinning={isLoading}>
+                        <Outlet></Outlet>
+                    </Spin>
                 </Content>
             </Layout>
         </Layout>
     )
 }
-export default SandBox
+
+const mapToStateProps = (state:any)=>{
+    return {
+        isLoading:state.SpinReducer.isLoading,
+    }
+}
+
+export default connect(mapToStateProps)(SandBox)

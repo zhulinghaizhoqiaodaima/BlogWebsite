@@ -7,24 +7,25 @@ import {
 } from '@ant-design/icons';
 import styles from './sass/TopHeader.module.css'
 import { Layout, Dropdown, Menu, Space, Avatar } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const { Header } = Layout;
-
-function TopHeader() {
-  const [collapsed, setCollapsed] = useState(false);
+function TopHeader(props: any) {
+  const { isCollpsed, changeCollapsed } = props
+  // const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
-  let {role:{roleName},username} = JSON.parse(localStorage.getItem("token") as any);
-  
+  let { role: { roleName }, username } = JSON.parse(localStorage.getItem("token") as any);
+
   const menu = (
     <Menu
-    onClick={(item:any) => {
-      if(item.key === '2') {
-        localStorage.removeItem("token")
-        navigate('/login')
-      }
-    }}
+      onClick={(item: any) => {
+        if (item.key === '2') {
+          localStorage.removeItem("token")
+          navigate('/login')
+        }
+      }}
       items={[
         {
           key: '1',
@@ -33,7 +34,7 @@ function TopHeader() {
               {roleName}
             </a>
           ),
-  
+
         },
         {
           key: '2',
@@ -42,11 +43,11 @@ function TopHeader() {
               退出登录
             </a>
           ),
-  
+
         }
       ]}
     />
-  );  
+  );
   return (
     <Header
       className="site-layout-background"
@@ -54,14 +55,14 @@ function TopHeader() {
         padding: 0,
       }}
     >
-      {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+      {React.createElement(isCollpsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
         className: styles.trigger,
         onClick: () => {
-          setCollapsed(!collapsed)
+          changeCollapsed(isCollpsed)
         },
       })}
       <div style={{ float: "right", marginRight: "20px" }}>
-        <span style={{ marginRight: "10px" }}>欢迎<span style={{color:"#1890ff"}}>{username}</span>回来</span>
+        <span style={{ marginRight: "10px" }}>欢迎<span style={{ color: "#1890ff" }}>{username}</span>回来</span>
         <Dropdown overlay={menu}>
           <a onClick={e => e.preventDefault()}>
             <Space>
@@ -75,4 +76,20 @@ function TopHeader() {
   )
 }
 
-export default TopHeader
+const mapStateToProps = (state: any) => {
+  return {
+    isCollpsed: state.Collpsed.isCollapsed,
+  }
+}
+const mapDispatchToProps = {
+  changeCollapsed: (collapsed: any) => {
+    return {
+      type: 'collapsed/changeCollapsed', // 调用方式reducers名/方法
+      payload: {
+        collapsed: collapsed,
+      }
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopHeader)

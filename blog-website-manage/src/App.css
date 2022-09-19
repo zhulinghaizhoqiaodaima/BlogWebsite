@@ -1,8 +1,8 @@
 @import '~antd/dist/antd.css';
 
 .App >section{
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 ::-webkit-scrollbar {
     width: 5px;

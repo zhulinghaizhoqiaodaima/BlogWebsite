@@ -8,9 +8,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // 严格模式开启目前会导致useEffect 初始化两次
+  // <React.StrictMode>
+      <App />
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
