@@ -2,8 +2,8 @@
 import { Table, Tag, Button, Modal, message, Popover, Switch } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
-import { getRightChildren, deleteRightOne } from '../../../../api/rigthsCurd'
-import { deleteChildrenOne } from '../../../../api/childrenCurd'
+import { getRightChildren, deleteRightOne, updateRight } from '../../../../api/rigthsCurd'
+import { deleteChildrenOne, updateChildren } from '../../../../api/childrenCurd'
 import { fromJS } from 'immutable'
 import {
   EditOutlined,
@@ -53,7 +53,7 @@ const Index = () => {
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
-      render:(id)=>{
+      render: (id) => {
         return <h1>{id}</h1>
       }
     },
@@ -74,7 +74,7 @@ const Index = () => {
       title: '操作',
       render: (item) => {
         const contentConfig = (<div style={{ textAlign: "center" }}>
-          <Switch checked={item.pagepermisson}></Switch>
+          <Switch checked={item.pagepermisson} onChange={() => switchMethod(item)}></Switch>
         </div>)
         return (
           <div>
@@ -90,7 +90,9 @@ const Index = () => {
             />
             {` `}
             <Popover title="页面权限" content={contentConfig} trigger={item.pagepermisson === undefined ? '' : 'click'} >
-              <Button type='primary' icon={<EditOutlined />} disabled={item.pagepermisson === undefined ? true : false} size='middle' shape="circle" />
+              <Button type='primary' icon={<EditOutlined />} disabled={item.pagepermisson === undefined ? true : false} onClick={() => {
+
+              }} size='middle' shape="circle" />
             </Popover>
           </div>
         )
@@ -116,13 +118,40 @@ const Index = () => {
       onCancel() { },
     });
   };
-  useEffect(() => {
+  const switchMethod = async (item: any) => {
+    item.pagepermisson = item.pagepermisson === 1 ? 0 : 1;
+    console.log(item.pagepermisson);
+    
+    let fun = item.grade === 1 ? updateRight :updateChildren;
+    try {
+      await fun(item.id, {
+        pagepermisson: item.pagepermisson
+      })
+      getInit()
+      message.success('修改权限成功')
+    } catch (err:any) {
+        message.error(err)
+    }
+    // if (item.grade === 1) {
+    //   updateRight(item.id, {
+    //     pagepermisson: item.pagepermisson
+    //   })
+    // } else {
+    //   updateChildren(item.id, {
+    //     pagepermisson: item.pagepermisson
+    //   })
+    // }
+  }
+  const getInit = () => {
     getRightChildren().then((res: any) => {
       let data: any = fromJS(res).toJS();
       let newData = getNewDataList(data);
       console.log(newData);
       setdataTable(newData)
     })
+  }
+  useEffect(() => {
+    getInit()
   }, [])
 
   return (

@@ -19,15 +19,6 @@
       "id": 3
     },
     {
-      "username": "诸葛山珍",
-      "password": "123",
-      "roleState": true,
-      "default": false,
-      "region": "",
-      "roleId": 1,
-      "id": 4
-    },
-    {
       "username": "西门吹",
       "password": "123",
       "roleState": true,
@@ -46,15 +37,6 @@
       "id": 9
     },
     {
-      "username": "3192052051732",
-      "password": "123",
-      "region": "南美洲",
-      "roleId": 2,
-      "roleState": true,
-      "default": false,
-      "id": 10
-    },
-    {
       "username": "竹林海",
       "password": "123",
       "region": "南极洲",
@@ -64,9 +46,9 @@
       "id": 11
     },
     {
-      "username": "啧啧啧",
-      "password": "666",
-      "region": "北美洲",
+      "username": "张三",
+      "password": "123",
+      "region": "亚洲",
       "roleId": 2,
       "roleState": true,
       "default": false,
@@ -80,7 +62,6 @@
       "roleType": 1,
       "rights": [
         "/user-manage",
-        "/user-manage/add",
         "/user-manage/delete",
         "/user-manage/update",
         "/user-manage/list",
@@ -91,7 +72,6 @@
         "/right-manage/role/delete",
         "/right-manage/right/update",
         "/right-manage/right/delete",
-        "/news-manage",
         "/news-manage/list",
         "/news-manage/add",
         "/news-manage/update/:id",
@@ -101,11 +81,13 @@
         "/audit-manage",
         "/audit-manage/audit",
         "/audit-manage/list",
-        "/publish-manage",
         "/publish-manage/unpublished",
         "/publish-manage/published",
         "/publish-manage/sunset",
-        "/home"
+        "/user-manage/add",
+        "/home",
+        "/news-manage",
+        "/publish-manage"
       ]
     },
     {
@@ -129,10 +111,10 @@
         "/audit-manage",
         "/audit-manage/audit",
         "/audit-manage/list",
-        "/publish-manage",
         "/publish-manage/unpublished",
         "/publish-manage/published",
-        "/publish-manage/sunset"
+        "/publish-manage/sunset",
+        "/publish-manage"
       ]
     },
     {
@@ -561,7 +543,7 @@
       "auditState": 2,
       "createTime": 1663143053047,
       "star": 892,
-      "view": 435,
+      "view": 436,
       "id": 12,
       "publishState": 2,
       "publishTime": 1663472825920
@@ -633,8 +615,8 @@
       "roleId": 1,
       "auditState": 2,
       "createTime": 1663466102544,
-      "star": 183,
-      "view": 199,
+      "star": 184,
+      "view": 200,
       "id": 17,
       "publishState": 2,
       "publishTime": 1663554302810
@@ -661,8 +643,8 @@
       "region": "南极洲",
       "author": "钢蛋",
       "roleId": 2,
-      "auditState": 1,
-      "publishState": 2,
+      "auditState": 2,
+      "publishState": 1,
       "createTime": 1663572864174,
       "star": 860,
       "view": 181,
