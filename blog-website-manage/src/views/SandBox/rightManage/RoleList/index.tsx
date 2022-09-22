@@ -34,6 +34,8 @@ const Role = () => {
       }
       return item;
     }))
+    console.log(myCheckedKeys);
+    
     patchRoles(rolesId,{rights:myCheckedKeys}).then(res=>{
       message.success("修改成功")
     }).catch(err=>{
