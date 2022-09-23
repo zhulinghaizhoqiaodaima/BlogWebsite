@@ -457,7 +457,7 @@
       "view": 204,
       "id": 5,
       "publishTime": 1663554297706,
-      "publishState": 2
+      "publishState": 3
     },
     {
       "title": "State and Lifecycle",
@@ -487,7 +487,7 @@
       "view": 479,
       "id": 7,
       "publishTime": 1663554299635,
-      "publishState": 2
+      "publishState": 3
     },
     {
       "title": "Thinking in React",
@@ -499,7 +499,7 @@
       "auditState": 2,
       "createTime": 1615778891518,
       "star": 781,
-      "view": 889,
+      "view": 890,
       "id": 8,
       "publishTime": 1663554301204,
       "publishState": 2
@@ -530,7 +530,7 @@
       "star": 473,
       "view": 234,
       "id": 11,
-      "publishState": 2,
+      "publishState": 3,
       "publishTime": 1663472415648
     },
     {
@@ -558,7 +558,7 @@
       "auditState": 2,
       "createTime": 1663249840198,
       "star": 392,
-      "view": 5062,
+      "view": 5063,
       "id": 13,
       "publishState": 2,
       "publishTime": 1663472823785
@@ -618,7 +618,7 @@
       "star": 184,
       "view": 200,
       "id": 17,
-      "publishState": 2,
+      "publishState": 3,
       "publishTime": 1663554302810
     },
     {
@@ -629,7 +629,7 @@
       "author": "admin",
       "roleId": 1,
       "auditState": 2,
-      "publishState": 2,
+      "publishState": 3,
       "createTime": 1663554974377,
       "star": 180,
       "view": 749,
@@ -644,12 +644,87 @@
       "author": "钢蛋",
       "roleId": 2,
       "auditState": 2,
-      "publishState": 1,
+      "publishState": 2,
       "createTime": 1663572864174,
       "star": 860,
       "view": 181,
       "id": 19,
-      "publishTime": 1663572875560
+      "publishTime": 1663850543953
+    },
+    {
+      "title": "js内置类型",
+      "categoryId": 4,
+      "content": "<p>JS 中分为七种内置类型，七种内置类型⼜分为两⼤类型：基本类型和对象（Object）。 </p><p>基本类型有六种： <strong>null ， undefined ， boolean ， number ， string ， symbol 。</strong> </p><p>其中 JS 的数字类型是浮点类型的，没有整型。并且浮点类型基于 IEEE 754标准实现，在使 </p><p>⽤中会遇到某些 Bug。</p><p> NaN 也属于 number 类型，并且 NaN 不等于⾃身。 </p><p>对于基本类型来说，如果使⽤字⾯量的⽅式，那么这个变量只是个字⾯量，只有在必要的时 </p><p>候才会转换为对应的类型。</p><pre class=\"ql-syntax\" spellcheck=\"false\">let a = 111; // 这只是字面量,不是number类型\na.toString() // 使用时候才会转换为对象类型。\n</pre><p>对象（Object）是引⽤类型，在使⽤过程中会遇到浅拷⻉和深拷⻉的问题。</p><pre class=\"ql-syntax\" spellcheck=\"false\">let a = { name: 'FE' }\nlet b = a \nb.name = 'EF'\nconsole.log(a.name) // EF\n</pre><h1>Typeof</h1><p>typeof 对于基本类型，除了 null 都可以显示正确的类型。</p><pre class=\"ql-syntax\" spellcheck=\"false\">typeof 1 // 'number'\ntypeof '1' // 'string'\ntypeof undefined // 'undefined'\ntypeof true // 'boolean'\ntypeof Symbol() // 'symbol'\ntypeof b // b 没有声明，但是还会显示 undefined\n</pre><p><span style=\"color: rgb(38, 38, 38);\">typeof 对于对象，除了函数都会显示 object</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">typeof [] // 'object'\ntypeof {} // 'object'\ntypeof console.log // 'function'\n</pre><p><span style=\"color: rgb(38, 38, 38);\">对于 null 来说，虽然它是基本类型，但是会显示 object ，这是⼀个存在很久了的 Bug</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">typeof null // 'object'\n</pre><p><span style=\"color: rgb(38, 38, 38);\">为什么会出现这种情况呢？因为在 JS 的最初版本中，使⽤的是 32 位系统，为了性能考 </span></p><p><span style=\"color: rgb(38, 38, 38);\">虑使⽤低位存储了变量的类型信息， 000 开头代表是对象，然⽽ null 表示为全零，所以将 </span></p><p><span style=\"color: rgb(38, 38, 38);\">它错误的判断为 object 。虽然现在的内部类型判断代码已经改变了，但是对于这个 Bug 却 </span></p><p><span style=\"color: rgb(38, 38, 38);\">是⼀直流传下来。</span></p><p><span style=\"color: rgb(38, 38, 38);\">如果我们想获得⼀个变量的正确类型，可以通过</span><strong style=\"color: rgb(38, 38, 38);\"> Object.prototype.toString.call(xx)</strong><span style=\"color: rgb(38, 38, 38);\"> 。 </span></p><p><span style=\"color: rgb(38, 38, 38);\">这样我们就可以获得类似 [object Type] 的字符串。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">let a\n// 我们也可以这样判断 undefined\na === undefined\n// 但是 undefined 不是保留字，能够在低版本浏览器被赋值\nlet undefined = 1\n// 这样判断就会出错\n// 所以可以⽤下⾯的⽅式来判断，并且代码量更少\n// 因为 void 后⾯随便跟上⼀个组成表达式\n// 返回就是 undefined\na === void 0\n</pre><h1><span style=\"color: rgb(38, 38, 38);\">类型转换 </span></h1><p><strong style=\"color: rgb(38, 38, 38);\">转Boolean </strong></p><p><span style=\"color: rgb(38, 38, 38);\">在条件判断时，除了 </span><strong style=\"color: rgb(38, 38, 38);\">undefined ， null ， false ， NaN ， '' ， 0 ， -0 ，</strong><span style=\"color: rgb(38, 38, 38);\">其他所有 </span></p><p><span style=\"color: rgb(38, 38, 38);\">值都转为 true ，包括所有对象。</span></p><p><br></p><h1><strong style=\"color: rgb(38, 38, 38);\">对象转基本类型</strong></h1><p><span style=\"color: rgb(38, 38, 38);\">对象在转换基本类型时，⾸先会调⽤ valueOf 然后调⽤ toString 。并且这两个⽅法你是 </span></p><p><span style=\"color: rgb(38, 38, 38);\">可以重写的。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">let a = {\n valueOf() {\n return 0\n }\n}\n</pre><p><span style=\"color: rgb(38, 38, 38);\">当然你也可以重写 Symbol.toPrimitive ，该⽅法在转基本类型时调⽤优先级最⾼。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">let a = {\n valueOf() {\n return 0;\n },\n toString() {\n return '1';\n },\n [Symbol.toPrimitive]() {\n return 2;\n }\n}1 + a // =&gt; 3\n'1' + a // =&gt; '12'\n</pre><p><strong style=\"color: rgb(38, 38, 38);\">四则运算符 </strong></p><p><span style=\"color: rgb(38, 38, 38);\">只有当加法运算时，其中⼀⽅是字符串类型，就会把另⼀个也转为字符串类型。其他运算只 </span></p><p><span style=\"color: rgb(38, 38, 38);\">要其中⼀⽅是数字，那么另⼀⽅就转为数字。并且加法运算会触发三种类型转换：将值转换 </span></p><p><span style=\"color: rgb(38, 38, 38);\">为原始值，转换为数字，转换为字符串。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">1 + '1' // '11'\n2 * '2' // 4\n[1, 2] + [2, 1] // '1,22,1' // 数组转化为字符串再相加\n// [1, 2].toString() -&gt; '1,2'\n// [2, 1].toString() -&gt; '2,1'\n// '1,2' + '2,1' = '1,22,1'\n</pre><p><span style=\"color: rgb(38, 38, 38);\">对于加号需要注意这个表达式 'a' + + 'b</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">'a' + + 'b' // -&gt; \"aNaN\"\n// 因为 + 'b' -&gt; NaN-&gt; + 拼接字符 为NaN\n// 你也许在⼀些代码中看到过 + '1' -&gt; 1 -&gt; + 拼接字符串数字为数字本身\n</pre><h1><span style=\"color: rgb(38, 38, 38);\">== 操作符</span></h1><p><br></p><p><span style=\"color: rgb(38, 38, 38);\">上图中的 toPrimitive 就是对象转基本类型。 </span></p><p><span style=\"color: rgb(38, 38, 38);\">这⾥来解析⼀道题⽬ [] == ![] // -&gt; true ，下⾯是这个表达式为何为 true 的步骤：</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">// [] 转成 true，然后取反变成 false\n[] == false\n// 根据第 8 条得出\n[] == ToNumber(false)\n[] == 0\n// 根据第 10 条得出\nToPrimitive([]) == 0\n// [].toString() -&gt; ''\n'' == 0\n// 根据第 6 条得出\n0 == 0 // -&gt; true\n</pre><p><strong style=\"color: rgb(38, 38, 38);\">⽐较运算符 </strong></p><p><span style=\"color: rgb(38, 38, 38);\">1. 如果是对象，就通过 toPrimitive 转换对象 </span></p><p><span style=\"color: rgb(38, 38, 38);\">2. 如果是字符串，就通过 unicode 字符索引来⽐较</span></p>",
+      "region": "",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 2,
+      "publishState": 2,
+      "createTime": 1663849758529,
+      "star": 394,
+      "view": 862,
+      "id": 20,
+      "publishTime": 1663849769163
+    },
+    {
+      "title": "箭头函数",
+      "categoryId": 3,
+      "content": "<h3>箭头函数</h3><ol><li><span style=\"color: rgba(0, 0, 0, 0.75);\">没有自己的this，this来自上层</span><strong style=\"color: rgba(0, 0, 0, 0.75);\">函数作用域</strong><span style=\"color: rgba(0, 0, 0, 0.75);\">（对象作用域没有this），故没有自己的作用域。</span></li><li><span style=\"color: rgba(0, 0, 0, 0.75);\">如果箭头函数仅有一个表达式，那么该表达式的结果会被隐式返回表达式的结果，不像普通函数一样undefined。</span></li><li><span style=\"color: rgba(0, 0, 0, 0.75);\">普通函数内部，</span><span style=\"color: rgb(33, 37, 41);\">参数对象（arguments）</span><span style=\"color: rgba(0, 0, 0, 0.75);\">为特殊的类数组对象。包含了函数被调用时的参数列表。箭头函数内部是没有arguments对象，同this一样，依赖于外部非箭头函数。</span></li><li>箭头函数的this指向不会改变，call()、apply()、bind()等方法不能改变箭头函数中的this指向 。</li><li>箭头函数没有原型。</li></ol><p>思否：<a href=\"https://segmentfault.com/a/1190000021380336\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(24, 144, 255);\">箭头函数和普通函数的区别</a>。</p><p>CSND:&nbsp;<a href=\"https://blog.csdn.net/qq_40713392/article/details/106319971\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(24, 144, 255);\">js箭头函数和普通函数的区别</a>。</p>",
+      "region": "",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 2,
+      "publishState": 2,
+      "createTime": 1663850049850,
+      "star": 451,
+      "view": 179,
+      "id": 21,
+      "publishTime": 1663850058883
+    },
+    {
+      "title": "原型原型链",
+      "categoryId": 5,
+      "content": "<h2><br></h2><p><br></p><p><strong style=\"color: rgb(36, 41, 47);\">大家可以先仔细分析下该图一，然后让我们进入主题</strong></p><p><br></p><h2><span style=\"color: rgb(36, 41, 47);\">prototype</span></h2><p><span style=\"color: rgb(36, 41, 47);\">首先来介绍下 prototype 属性。这是一个显式原型属性，</span><strong style=\"color: rgb(245, 34, 45);\">只有函数才拥有该属性</strong><span style=\"color: rgb(36, 41, 47);\">。基本上所有函数都有这个属性，但是也有一个例外</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">let fun = Function.prototype.bind()\n</pre><p><span style=\"color: rgb(36, 41, 47);\">如果你以上述方法创建一个函数，那么可以发现这个函数是不具有 prototype 属性的。</span></p><h4><span style=\"color: rgb(36, 41, 47);\">prototype 如何产生的</span></h4><p><span style=\"color: rgb(36, 41, 47);\">当我们声明一个函数时，这个属性就被自动创建了。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">let a = function Foo() {}\n</pre><p><span style=\"color: rgb(36, 41, 47);\">并且这个属性的值是一个对象（也就是原型），只有一个属性 constructor</span></p><p><br></p><p><br></p><p><span style=\"color: rgb(36, 41, 47);\">constructor 对应着构造函数，也就是 Foo()本身。</span></p><p><br></p><h4><span style=\"color: rgb(36, 41, 47);\">constructor</span></h4><p><span style=\"color: rgb(36, 41, 47);\">constructor 是一个公有且不可枚举的属性。一旦我们改变了函数的 prototype ，那么新对象就没有这个属性了（当然也可以通过原型链取到 constructor)</span></p><p><br></p><p><span style=\"color: rgb(36, 41, 47);\">那么你肯定也有一个疑问，这个属性到底有什么用呢？其实这个属性可以说是一个历史遗留问题，在大部分情况下是没用的，在我的理解里，我认为他有两个作用：</span></p><ul><li><span style=\"color: rgb(36, 41, 47);\">让实例对象知道是什么函数构造了它；</span></li><li><span style=\"color: rgb(36, 41, 47);\">如果想给某些类库中的构造函数增加一些自定义的方法，就可以通过 xx.constructor.method 来扩展。</span></li></ul><p><br></p><h2><span style=\"color: rgb(36, 41, 47);\">_proto_</span></h2><p><span style=\"color: rgb(36, 41, 47);\">这是每个对象都有的隐式原型属性，</span><strong style=\"color: rgb(245, 34, 45);\">指向了创建该对象的构造函数的原型</strong><span style=\"color: rgb(36, 41, 47);\">。</span></p><p><span style=\"color: rgb(36, 41, 47);\">其实这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 _proto_ 来访问。</span></p><p><span style=\"color: rgb(36, 41, 47);\">因为在 JS 中是没有类的概念的，为了实现类似继承的方式，通过</span><strong style=\"color: rgb(36, 41, 47);\"> _proto_ 将对象和原型联系起来组成原型链</strong><span style=\"color: rgb(36, 41, 47);\">，得以让对象可以访问到不属于自己的属性。</span></p><p><strong style=\"color: rgb(36, 41, 47);\">实例对象的 _proto_ 如何产生的</strong></p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {}\n// 这个函数是 Function 的实例对象\n// function 就是一个语法糖\n// 内部调用了 new Function(...)\n</pre><p><span style=\"color: rgb(36, 41, 47);\">从上图可知，当我们使用 new 操作符时，生成的实例对象拥有了 _proto_属性。</span></p><p><span style=\"color: rgb(36, 41, 47);\">所以可以说，在 new 的过程中，新对象被添加了 _proto_ 并且链接到构造函数的原型上。</span></p><p><strong style=\"color: rgb(232, 50, 60);\">new 的过程:</strong></p><ol><li><span style=\"color: rgb(36, 41, 47);\">新生成了一个对象</span></li><li><span style=\"color: rgb(36, 41, 47);\">链接到原型</span></li><li><span style=\"color: rgb(36, 41, 47);\">绑定 this</span></li><li><span style=\"color: rgb(36, 41, 47);\">返回新对象</span></li></ol><p><span style=\"color: rgb(36, 41, 47);\">在调用 new 的过程中会发生以上四件事情，我们也可以试着来自己实现一个 new</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">function _new(constructor, ...arg) {\n  var obj = {}; // 对应于上面的步骤 1\n  obj.__proto__ = constructor.prototype; // 对应于上面的步骤 2\n\n  var res = constructor.apply(obj, arg); // 对应于上面的步骤 3\n\n  return Object.prototype.toString.call(res) === '[object Object]' ? res : obj; // 对应于上面的步骤 4\n}\n\nconst Fun = function(name) {\n  this.name = name;\n};\n\nconsole.log(_new(Fun, '小明'));\n\n// Fun {name: \"小明\"}\n</pre><p><span style=\"color: rgb(36, 41, 47);\">对于实例对象来说，都是通过 new 产生的，无论是 function Foo() 还是 </span><strong style=\"color: rgb(36, 41, 47);\">let a = { b : 1 } 。</strong></p><p><span style=\"color: rgb(36, 41, 47);\">对于创建一个对象来说，更推荐使用字面量的方式创建对象。</span></p><p><span style=\"color: rgb(36, 41, 47);\">因为你使用</span><strong style=\"color: rgb(36, 41, 47);\"> new Object()</strong><span style=\"color: rgb(36, 41, 47);\"> 的方式创建对象需要通过</span><strong style=\"color: rgb(36, 41, 47);\">作用域链</strong><span style=\"color: rgb(36, 41, 47);\">一层层找到 Object，但是你使用字面量的方式就没这个问题。</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {}\n// function 就是个语法糖\n// 内部等同于 new Function()\nlet a = { b: 1 }\n// 这个字面量内部也是使用了 new Object()\n</pre><h2><span style=\"color: rgb(36, 41, 47);\">Function.__</span><strong style=\"color: rgb(36, 41, 47);\">proto</strong><span style=\"color: rgb(36, 41, 47);\"> __=== Function.prototype</span></h2><p><span style=\"color: rgb(36, 41, 47);\">对于对象来说，xx.__proto__.contrcutor 是该对象的构造函数，但是在图中我们可以发现 Function.__proto__ === Function.prototype，难道这代表着 Function 自己产生了自己?</span></p><p><span style=\"color: rgb(36, 41, 47);\">答案</span><strong style=\"color: rgb(36, 41, 47);\">肯定是否认的</strong><span style=\"color: rgb(36, 41, 47);\">，要说明这个问题我们先从 Object 说起。</span></p><p><span style=\"color: rgb(36, 41, 47);\">从开头的原型图片我们可以发现，所有对象都可以通过原型链最终找到 Object.prototype ，虽然 Object.prototype 也是一个对象，但是这个对象却不是 Object 创造的，而是</span><strong style=\"color: rgb(36, 41, 47);\">JS引擎</strong><span style=\"color: rgb(36, 41, 47);\">自己创建了 Object.prototype 。所以可以这样说，所有实例都是对象，但是对象不一定都是实例。</span></p><p><span style=\"color: rgb(36, 41, 47);\">接下来我们来看 Function.prototype 这个特殊的对象，如果你在浏览器将这个对象打印出来，会发现这个对象其实是一个函数。</span></p><p><br></p><p>\t<span style=\"color: rgb(36, 41, 47);\">我们知道函数都是通过 new Function() 生成的，难道 Function.prototype 也是通过 new Function() 产生的吗？答案也是否定的，这个函数也是引擎自己创建的。首先引擎创建了</span><span style=\"color: rgb(245, 34, 45);\"> </span><strong style=\"color: rgb(245, 34, 45);\">Object.prototype</strong><strong style=\"color: rgb(36, 41, 47);\"> </strong><span style=\"color: rgb(36, 41, 47);\">，然后创建了 </span><strong style=\"color: rgb(245, 34, 45);\">Function.prototype</strong><span style=\"color: rgb(36, 41, 47);\"> ，并且通过 __proto__ 将两者联系了起来。这里也很好的解释了上面的一个问题，为什么 let fun = Function.prototype.bind() 没有 prototype 属性。</span><strong style=\"color: rgb(245, 34, 45);\">因为 Function.prototype 是引擎创建出来的对象，引擎认为不需要给这个对象添加 prototype 属性。</strong></p><p><strong style=\"color: rgb(36, 41, 47);\">所以我们又可以得出一个结论，不是所有函数都是 new Function() 产生的。</strong></p><p>\t<span style=\"color: rgb(36, 41, 47);\">有了 Function.prototype 以后才有了 function Function() ，然后其他的构造函数都是 function Function() 生成的。</span></p><p>\t<span style=\"color: rgb(36, 41, 47);\">现在可以来解释 Function.__proto__ === Function.prototype 这个问题了。因为先有的 Function.prototype 以后才有的 function Function() ，所以也就不存在鸡生蛋蛋生鸡的悖论问题了。对于为什么 Function.__proto__ 会等于 Function.prototype 。</span></p><p>\t<span style=\"color: rgb(36, 41, 47);\">个人的理解是：其他所有的构造函数都可以通过原型链找到 Function.prototype ，并且 function Function() 本质也是一个函数，为了不产生混乱就将 function Function() 的 __proto__ 联系到了 Function.prototype 上。</span></p><p><br></p><h2><span style=\"color: rgb(36, 41, 47);\">总结</span></h2><ul><li><span style=\"color: rgb(36, 41, 47);\">Object 是所有对象的爸爸，所有对象都可以通过 __proto__ 找到它</span></li><li><span style=\"color: rgb(36, 41, 47);\">Function 是所有函数的爸爸，所有函数都可以通过 __proto__ 找到它</span></li><li><strong style=\"color: rgb(36, 41, 47);\">Function.prototype</strong><span style=\"color: rgb(36, 41, 47);\"> 和 </span><strong style=\"color: rgb(36, 41, 47);\">Object.prototype</strong><span style=\"color: rgb(36, 41, 47);\"> 是两个特殊的对象，他们由引擎来创建</span></li><li><span style=\"color: rgb(36, 41, 47);\">除了以上两个特殊对象，其他对象都是通过构造器 new 出来的</span></li><li><span style=\"color: rgb(36, 41, 47);\">函数的 prototype 是一个对象，也就是原型</span></li><li><span style=\"color: rgb(36, 41, 47);\">对象的 __proto__ 指向构造它的原型， __proto__ 将对象和原型连接起来组成了原型链。</span></li></ul><p><br></p>",
+      "region": "",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 2,
+      "publishState": 2,
+      "createTime": 1663850110706,
+      "star": 59,
+      "view": 297,
+      "id": 22,
+      "publishTime": 1663850122682
+    },
+    {
+      "title": "new &&instanceof",
+      "categoryId": 6,
+      "content": "<h1>new</h1><ol><li>创建一个空对象。</li><li>新对象隐式原型<strong>proto</strong>链接到构造函数显式原型prototype上</li><li>执行构造函数 并将构造函数作用域指向新对象</li><li>如果该函数没有返回对象，则返回 this( 返回this实际是返回一个空对象， new Object()就是返回一个空对象{} )。</li></ol><p>在调⽤ new 的过程中会发⽣以上四件事情，我们也可以试着来⾃⼰实现⼀个 new:</p><pre class=\"ql-syntax\" spellcheck=\"false\">function _new(constructor, ...arg) {\n  var obj = {}; // 对应于上面的步骤 1\n  obj.__proto__ = constructor.prototype; // 对应于上面的步骤 2\n\n  var res = constructor.apply(obj, arg); // 对应于上面的步骤 3\n\n  return Object.prototype.toString.call(res) === '[object Object]' ? res : obj; // 对应于上面的步骤 4\n}\n\nconst Fun = function(name) {\n  this.name = name;\n};\n\nconsole.log(_new(Fun, '小明'));\n\n// Fun {name: \"小明\"}\n</pre><p>对于实例对象来说，都是通过 new 产⽣的，⽆论是 function Foo() 还是 let a = { b : </p><p>1 } 。 </p><p>对于创建⼀个对象来说，更推荐使⽤字⾯量的⽅式创建对象（⽆论性能上还是可读性）。因 </p><p>为你使⽤ new Object() 的⽅式创建对象需要通过作⽤域链⼀层层找到 Object ，但是你使 </p><p>⽤字⾯量的⽅式就没这个问题。</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {}\n// function 就是个语法糖\n// 内部等同于 new Function()\nlet a = { b: 1 }\n// 这个字⾯量内部也是使⽤了 new Object()\n</pre><p>对于 new 来说，还需要注意下运算符优先级。</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {\n return this; }\nFoo.getName = function () {\n console.log('1');\n};\nFoo.prototype.getName = function () {\n console.log('2');\n};\nnew Foo.getName(); // -&gt; 1\nnew Foo().getName(); // -&gt; 2\n</pre><p><img src=\"https://cdn.nlark.com/yuque/0/2022/png/2532466/1652941427348-6aa80821-162f-4f5c-bd4e-92f36d88e5be.png\" width=\"719.2727272727273\"></p><p><br></p><p>从上图可以看出， new Foo() 的优先级⼤于 new Foo ，所以对于上述代码来说可以这样划 </p><p>分执⾏顺序</p><pre class=\"ql-syntax\" spellcheck=\"false\">new (Foo.getName()); \n(new Foo()).getName();\n</pre><p><span style=\"color: rgb(38, 38, 38);\">对于第⼀个函数来说，先执⾏了 Foo.getName() ，所以结果为 1；对于后者来说，先执⾏ </span></p><p><span style=\"color: rgb(38, 38, 38);\">new Foo() 产⽣了⼀个实例，然后通过原型链找到了 Foo 上的 getName 函数，所以结果 </span></p><p><span style=\"color: rgb(38, 38, 38);\">为 2。</span></p><p><br></p><p><br></p><h1>instanceof </h1><p>instanceof 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是 </p><p>能找到类型的 prototype 。 </p><p>我们也可以试着实现⼀下 instanceof</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Myinstanceof (left, right) {\n    // 获得类型的原型\n    let prototype = right.prototype\n    // 获得对象的原型\n    left = left.__proto__\n    // 判断对象的类型是否等于类型的原型\n    while (true) {\n        if (left === null)\n            return false\n        if (prototype === left)\n            return true\n        left = left.__proto__\n    }\n}\n</pre><p><br></p>",
+      "region": "",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 1,
+      "publishState": 2,
+      "createTime": 1663850233954,
+      "star": 238,
+      "view": 976,
+      "id": 23,
+      "publishTime": 1663850239594
+    },
+    {
+      "title": "闭包",
+      "categoryId": 6,
+      "content": "<h1>new</h1><ol><li>创建一个空对象。</li><li>新对象隐式原型<strong>proto</strong>链接到构造函数显式原型prototype上</li><li>执行构造函数 并将构造函数作用域指向新对象</li><li>如果该函数没有返回对象，则返回 this( 返回this实际是返回一个空对象， new Object()就是返回一个空对象{} )。</li></ol><p>在调⽤ new 的过程中会发⽣以上四件事情，我们也可以试着来⾃⼰实现⼀个 new:</p><pre class=\"ql-syntax\" spellcheck=\"false\">function _new(constructor, ...arg) {\n  var obj = {}; // 对应于上面的步骤 1\n  obj.__proto__ = constructor.prototype; // 对应于上面的步骤 2\n\n  var res = constructor.apply(obj, arg); // 对应于上面的步骤 3\n\n  return Object.prototype.toString.call(res) === '[object Object]' ? res : obj; // 对应于上面的步骤 4\n}\n\nconst Fun = function(name) {\n  this.name = name;\n};\n\nconsole.log(_new(Fun, '小明'));\n\n// Fun {name: \"小明\"}\n</pre><p>对于实例对象来说，都是通过 new 产⽣的，⽆论是 function Foo() 还是 let a = { b : </p><p>1 } 。 </p><p>对于创建⼀个对象来说，更推荐使⽤字⾯量的⽅式创建对象（⽆论性能上还是可读性）。因 </p><p>为你使⽤ new Object() 的⽅式创建对象需要通过作⽤域链⼀层层找到 Object ，但是你使 </p><p>⽤字⾯量的⽅式就没这个问题。</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {}\n// function 就是个语法糖\n// 内部等同于 new Function()\nlet a = { b: 1 }\n// 这个字⾯量内部也是使⽤了 new Object()\n</pre><p>对于 new 来说，还需要注意下运算符优先级。</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Foo() {\n return this; }\nFoo.getName = function () {\n console.log('1');\n};\nFoo.prototype.getName = function () {\n console.log('2');\n};\nnew Foo.getName(); // -&gt; 1\nnew Foo().getName(); // -&gt; 2\n</pre><p><img src=\"https://cdn.nlark.com/yuque/0/2022/png/2532466/1652941427348-6aa80821-162f-4f5c-bd4e-92f36d88e5be.png\" width=\"719.2727272727273\"></p><p><br></p><p>从上图可以看出， new Foo() 的优先级⼤于 new Foo ，所以对于上述代码来说可以这样划 </p><p>分执⾏顺序</p><pre class=\"ql-syntax\" spellcheck=\"false\">new (Foo.getName()); \n(new Foo()).getName();\n</pre><p><span style=\"color: rgb(38, 38, 38);\">对于第⼀个函数来说，先执⾏了 Foo.getName() ，所以结果为 1；对于后者来说，先执⾏ </span></p><p><span style=\"color: rgb(38, 38, 38);\">new Foo() 产⽣了⼀个实例，然后通过原型链找到了 Foo 上的 getName 函数，所以结果 </span></p><p><span style=\"color: rgb(38, 38, 38);\">为 2。</span></p><p><br></p><p><br></p><h1>instanceof </h1><p>instanceof 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是 </p><p>能找到类型的 prototype 。 </p><p>我们也可以试着实现⼀下 instanceof</p><pre class=\"ql-syntax\" spellcheck=\"false\">function Myinstanceof (left, right) {\n    // 获得类型的原型\n    let prototype = right.prototype\n    // 获得对象的原型\n    left = left.__proto__\n    // 判断对象的类型是否等于类型的原型\n    while (true) {\n        if (left === null)\n            return false\n        if (prototype === left)\n            return true\n        left = left.__proto__\n    }\n}\n</pre><p><br></p>",
+      "region": "南极洲",
+      "author": "钢蛋",
+      "roleId": 2,
+      "auditState": 2,
+      "publishState": 2,
+      "createTime": 1663850541090,
+      "star": 326,
+      "view": 804,
+      "id": 24,
+      "publishTime": 1663850557657
     }
   ]
 }

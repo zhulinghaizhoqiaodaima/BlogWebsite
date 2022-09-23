@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import './sass/SandBox.scss'
 import SideMenu from '../../components/SandBox/SideMenu'
@@ -8,7 +10,7 @@ import { connect } from 'react-redux';
 
 const { Content } = Layout;
 function SandBox(props:any) {
-    const {isLoading} = props;    
+    const {isLoading} = props;       
     return (
         <Layout>
             <SideMenu></SideMenu>

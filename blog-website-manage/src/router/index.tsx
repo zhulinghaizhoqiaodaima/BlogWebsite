@@ -1,4 +1,4 @@
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
 import React from 'react'
 import Login from '../views/Login'
 import News from '../views/News'
@@ -24,15 +24,17 @@ import NewsUpdate from "../views/SandBox/NewsManage/NewsUpdate";
 // 路由配置
 const GetRoutes = () => {
   let rightsList: string[] = ['/news/detail/:id','/news','/','/login','/*'];
+  let home =  <SandBox></SandBox>;
   if (JSON.parse(localStorage.getItem("token") as any)) {
     const { role: { rights } } = JSON.parse(localStorage.getItem("token") as any)
     rightsList = [...rightsList,...rights];
+  }else{
+    home = <Navigate to='/login' />
   }
-
   const curroutes = [
     {
       path: '/',
-      element: <SandBox></SandBox>,
+      element: home,
       children: [
         {
           path: '/home',

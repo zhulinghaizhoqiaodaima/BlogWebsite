@@ -14,9 +14,8 @@ import { connect } from 'react-redux';
 const { Header } = Layout;
 function TopHeader(props: any) {
   const { isCollpsed, changeCollapsed } = props
-  // const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
-  let { role: { roleName }, username } = JSON.parse(localStorage.getItem("token") as any);
+  let { role: { roleName }, username } = JSON.parse(localStorage.getItem("token") as any) || {};
 
   const menu = (
     <Menu

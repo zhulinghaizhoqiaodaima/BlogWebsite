@@ -170,9 +170,9 @@ const NewsCategory = () => {
   }
   return (
     <div>
-      <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
+      {/* <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
         添加分类
-      </Button>
+      </Button> */}
       <Table
         components={{
           body: {

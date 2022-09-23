@@ -52,7 +52,7 @@ function NewsPreview(props: any) {
                   </Tag>
                 </Descriptions.Item>
                 <Descriptions.Item label="访问数量" style={{color:"red"}}>{newInfo.view}</Descriptions.Item>
-                <Descriptions.Item label="点赞数量">{newInfo.start }</Descriptions.Item>
+                <Descriptions.Item label="点赞数量">{newInfo.star || 0 }</Descriptions.Item>
                 <Descriptions.Item label="评论数量">{ 0 }</Descriptions.Item>
               </Descriptions>
             </PageHeader>

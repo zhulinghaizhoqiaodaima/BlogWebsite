@@ -8,16 +8,16 @@ import { useNavigate } from 'react-router-dom'
 function News() {
   const [newsList, setnewsList] = useState([])
   const navigate = useNavigate()
-  const getInit = () => {
-    getNewsList().then((res: any) => {
-      console.log(res);
-      let data = fromJS(res).toJS()
-      data = Object.entries(_.groupBy(data, item => item.category.title))
-      console.log(data);
+    const getInit = () => {
+      getNewsList().then((res: any) => {
+        console.log(res);
+        let data = fromJS(res).toJS()
+        data = Object.entries(_.groupBy(data, item => item.category.title))
+        console.log(data);
 
-      setnewsList(data)
-    })
-  }
+        setnewsList(data)
+      })
+    }
 
   useEffect(() => {
     getInit()

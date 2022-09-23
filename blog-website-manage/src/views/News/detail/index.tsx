@@ -6,6 +6,7 @@ import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/
 import { useParams } from 'react-router-dom';
 import { getNewsOne, UpdateNews } from '../../../api/newsCurd';
 import Icon from '@ant-design/icons'
+import moment from 'moment';
 function Detail(props: any) {
   const HeartSvg = () => (
     <svg width="1em" height="1em" fill="currentColor" viewBox="0 0 1024 1024">
@@ -80,7 +81,7 @@ function Detail(props: any) {
             >
               <Descriptions size="small" column={3}>
                 <Descriptions.Item label="作者">{newInfo.author}</Descriptions.Item>
-                <Descriptions.Item label="发布时间">-</Descriptions.Item>
+                <Descriptions.Item label="发布时间">{moment(newInfo.publishTime).format("YYYY-MM-DD HH:mm:ss")}</Descriptions.Item>
                 <Descriptions.Item label="区域">{newInfo.region === "" ? "全球" : newInfo.region}</Descriptions.Item>
                 <Descriptions.Item label="访问数量">{newInfo.view}</Descriptions.Item>
                 <Descriptions.Item label="点赞数量">{newInfo.star}</Descriptions.Item>
